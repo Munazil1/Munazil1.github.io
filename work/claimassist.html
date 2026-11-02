@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClaimAssist: Insurance claims intake and damage assessment | Munazil V</title>
+<meta name="description" content="Takes in vehicle insurance claims from any channel, assesses damage with multiple AI models, and sends only uncertain or severe claims to a human reviewer.">
+<link rel="canonical" href="https://munazil1.github.io/work/claimassist.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ClaimAssist: Insurance claims intake and damage assessment | Munazil V">
+<meta property="og:description" content="Takes in vehicle insurance claims from any channel, assesses damage with multiple AI models, and sends only uncertain or severe claims to a human reviewer.">
+<meta property="og:url" content="https://munazil1.github.io/work/claimassist.html">
+<meta name="theme-color" content="#F3F5F7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1A24" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='6' width='52' height='52' rx='10' fill='none' stroke='%231F5FD1' stroke-width='6'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial' font-weight='700' font-size='28' fill='%231F5FD1'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">M</span>Munazil V</a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="../index.html">Home</a>
+      <a href="../work.html" aria-current="page">Work</a>
+      <a href="../research.html">Research</a>
+      <a href="../about.html">About</a>
+      <a class="nav-cv" href="../resume.pdf"><span class="hide-sm">Download </span>CV</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<div class="wrap case-hero">
+  <a class="crumb" href="../work.html">All work</a>
+  <h1>ClaimAssist</h1>
+  <p class="case-kicker">Insurance claims intake and damage assessment</p>
+  <p class="case-summary">Takes in vehicle insurance claims from any channel, assesses damage with multiple AI models, and sends only uncertain or severe claims to a human reviewer.</p>
+  <div class="outcomes"><div class="outcome"><strong>4 channels</strong><span>email, WhatsApp, Telegram, live camera</span></div><div class="outcome"><strong>2 models</strong><span>GPT for photos, Gemini for video</span></div><div class="outcome"><strong>Every decision</strong><span>written to a tamper-resistant audit log</span></div></div>
+  <div class="case-art"><svg viewBox="0 0 320 180" role="img" aria-label="Car with a 360 degree scan ring, one damage area detected and one flagged for review">
+<ellipse class="i-ring" cx="160" cy="104" rx="128" ry="40"/><path class="i-accent" d="M286 98l6 8-10 2z"/>
+<path class="i-sheet" style="stroke:var(--muted);stroke-width:2.5" d="M88 114 L88 98 Q88 91 95 89 L111 85 L128 66 Q132 62 138 62 L184 62 Q190 62 194 66 L212 85 L228 89 Q235 91 235 98 L235 114 Z"/>
+<path class="i-ink" d="M135 82 L143 70 L160 70 L160 82 Z M167 70 L181 70 L192 82 L167 82 Z"/>
+<circle class="i-wheel" cx="122" cy="114" r="13"/><circle class="i-wheel" cx="202" cy="114" r="13"/>
+<rect class="i-box" x="164" y="86" width="40" height="22" rx="3"/><rect class="i-flag" x="84" y="84" width="34" height="24" rx="3"/></svg></div>
+  <!-- Optional: replace the illustration above with a sanitized screenshot (dummy data only), e.g.
+       <img src="../assets/claimassist.png" alt="ClaimAssist screen with sample data" width="1200" height="750"> -->
+</div>
+<div class="wrap case-layout">
+  <div class="case-main">
+    <section><h2>The problem</h2><p>Claims arrived through scattered channels and were assessed by hand. Results were inconsistent, and when a customer disputed an assessment there was no reliable record of how it was made.</p></section>
+    <section><h2>How it works</h2><ol class="steps"><li class=""><span class="dot" aria-hidden="true"></span><div><h3>Take in the claim</h3><p>Claims arrive by email, WhatsApp, Telegram, or live mobile camera capture.</p></div></li><li class=""><span class="dot" aria-hidden="true"></span><div><h3>Validate the vehicle</h3><p>OCR reads the number plate and VIN and checks them against policy records.</p></div></li><li class=""><span class="dot" aria-hidden="true"></span><div><h3>Assess the damage</h3><p>GPT reviews photos and Gemini 2.5 Pro reviews 360&deg; walkaround video for severity, repair cost, and fraud signals.</p></div></li><li class="person"><span class="dot" aria-hidden="true"></span><div><h3>Route by confidence</h3><p>Clear claims move ahead automatically. Uncertain or severe claims go to a reviewer.</p></div></li><li class=""><span class="dot" aria-hidden="true"></span><div><h3>Record everything</h3><p>Each decision is written to an audit log, with a PDF summary and Slack or email alerts.</p></div></li></ol><p class="legend"><span class="swatch" aria-hidden="true"></span>Amber steps are where a person makes the call.</p></section>
+    <section><h2>What I built</h2><p>The pipeline is orchestrated in n8n, with media stored in Azure Blob Storage and claim records in PostgreSQL. Each media type goes to the model best suited to it, and every assessment carries a confidence score that decides where the claim goes next.</p><p>Claim summaries are generated as PDFs automatically, and the team is alerted in real time when a claim needs attention.</p></section>
+    <section><h2>Key decisions</h2><ul class="decisions"><li><h3>The right model for each medium</h3><p>Photos and long walkaround videos have different needs, so each goes to the model that handles it best.</p></li><li><h3>Validate before assessing</h3><p>Checking the plate and VIN against policy records first means damage is never assessed on the wrong vehicle.</p></li><li><h3>People for the hard cases</h3><p>Confidence-based routing keeps reviewers focused on the claims that actually need their judgment.</p></li></ul></section>
+    <p class="note">The code belongs to Pure Magic IT and its client, so it isn't public. I'm happy to walk through it in an interview.</p>
+  </div>
+  <aside class="aside" aria-label="Project details">
+    <dl>
+      <div><dt>My role</dt><dd>Engineer: pipeline design and integrations</dd></div>
+      <div><dt>Company</dt><dd>Pure Magic IT, Dexter AI line</dd></div>
+      <div><dt>Status</dt><dd>Built end to end</dd></div>
+      <div><dt>Stack</dt><dd><div class="chips"><span class="chip">n8n</span><span class="chip">OpenAI</span><span class="chip">Google Gemini 2.5 Pro</span><span class="chip">Azure Blob Storage</span><span class="chip">PostgreSQL</span><span class="chip">OCR</span><span class="chip">Slack and email alerts</span></div></dd></div>
+    </dl>
+  </aside>
+</div>
+<div class="wrap"><nav class="pager" aria-label="More case studies"><a href="worktrack.html"><small>Previous</small>WorkTrack</a><a class="next" href="../work.html"><small>Back to</small>All work</a></nav></div>
+
+</main>
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h2>Let's talk</h2>
+        <p>I'm open to Machine Learning Engineer, AI Engineer, and Forward Deployed Engineer roles, remote or with relocation.</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:munazilv1@gmail.com">munazilv1@gmail.com</a>
+        <a href="https://www.linkedin.com/in/munazil-v">LinkedIn</a>
+        <a href="https://github.com/Munazil1">GitHub</a>
+      </div>
+    </div>
+    <p class="fine">Last updated October 2026</p>
+  </div>
+</footer>
+</body>
+</html>

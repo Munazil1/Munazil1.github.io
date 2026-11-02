@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DocFoundry: KYC and document verification SaaS | Munazil V</title>
+<meta name="description" content="A multi-tenant platform that verifies customer identity documents automatically. It runs in production for two client organizations.">
+<link rel="canonical" href="https://munazil1.github.io/work/docfoundry.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="DocFoundry: KYC and document verification SaaS | Munazil V">
+<meta property="og:description" content="A multi-tenant platform that verifies customer identity documents automatically. It runs in production for two client organizations.">
+<meta property="og:url" content="https://munazil1.github.io/work/docfoundry.html">
+<meta name="theme-color" content="#F3F5F7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1A24" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='6' width='52' height='52' rx='10' fill='none' stroke='%231F5FD1' stroke-width='6'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial' font-weight='700' font-size='28' fill='%231F5FD1'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">M</span>Munazil V</a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="../index.html">Home</a>
+      <a href="../work.html" aria-current="page">Work</a>
+      <a href="../research.html">Research</a>
+      <a href="../about.html">About</a>
+      <a class="nav-cv" href="../resume.pdf"><span class="hide-sm">Download </span>CV</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<div class="wrap case-hero">
+  <a class="crumb" href="../work.html">All work</a>
+  <h1>DocFoundry</h1>
+  <p class="case-kicker">KYC and document verification SaaS</p>
+  <p class="case-summary">A multi-tenant platform that verifies customer identity documents automatically. It runs in production for two client organizations.</p>
+  <div class="outcomes"><div class="outcome"><strong>2</strong><span>client organizations in production</span></div><div class="outcome"><strong>85%</strong><span>backend test coverage</span></div><div class="outcome"><strong>4 roles</strong><span>with role-based access control</span></div></div>
+  <div class="case-art"><svg viewBox="0 0 320 180" role="img" aria-label="Identity card with detected photo and text fields">
+<rect class="i-sheet" x="50" y="25" width="220" height="130" rx="12"/>
+<rect class="i-soft" x="68" y="45" width="62" height="78" rx="6"/>
+<circle class="i-ink" cx="99" cy="73" r="13"/><path class="i-ink" d="M78 116c5-16 37-16 42 0"/>
+<rect class="i-line" x="146" y="52" width="98" height="9" rx="4.5"/><rect class="i-line" x="146" y="72" width="70" height="9" rx="4.5"/>
+<rect class="i-line" x="146" y="92" width="88" height="9" rx="4.5"/><rect class="i-line" x="68" y="134" width="176" height="7" rx="3.5"/>
+<rect class="i-box" x="62" y="39" width="74" height="90" rx="4"/><rect class="i-box" x="140" y="46" width="110" height="21" rx="3"/><rect class="i-box" x="140" y="86" width="100" height="21" rx="3"/>
+<circle class="i-accent" cx="266" cy="31" r="15"/><path class="i-check" d="M259 31l5 5 9-10"/></svg></div>
+  <!-- Optional: replace the illustration above with a sanitized screenshot (dummy data only), e.g.
+       <img src="../assets/docfoundry.png" alt="DocFoundry screen with sample data" width="1200" height="750"> -->
+</div>
+<div class="wrap case-layout">
+  <div class="case-main">
+    <section><h2>The problem</h2><p>Client teams checked customer identity documents by hand: reading fields off scans, comparing selfies to ID photos, and preparing exports that met Dubai's DTCM/DET requirements. It was slow, inconsistent, and hard to audit.</p></section>
+    <section><h2>How it works</h2><ol class="steps"><li class=""><span class="dot" aria-hidden="true"></span><div><h3>Upload</h3><p>Customers or staff upload ID documents, one at a time or in bulk.</p></div></li><li class=""><span class="dot" aria-hidden="true"></span><div><h3>Extract fields</h3><p>Azure Document Intelligence reads the document and returns structured fields.</p></div></li><li class=""><span class="dot" aria-hidden="true"></span><div><h3>Match the face</h3><p>InsightFace compares the selfie with the photo on the ID.</p></div></li><li class=""><span class="dot" aria-hidden="true"></span><div><h3>Store securely</h3><p>Records are kept per client organization, with access controlled by role.</p></div></li><li class=""><span class="dot" aria-hidden="true"></span><div><h3>Export</h3><p>Verified records export in a DTCM/DET-compliant format.</p></div></li></ol></section>
+    <section><h2>What I built</h2><p>I built the FastAPI backend end to end: JWT authentication with refresh tokens, role-based access middleware with four roles, document storage, purchase-order and reporting modules, and more than eleven REST endpoints. Celery and Redis handle background work, and the React frontend sits on top.</p><p>The full stack runs in Docker behind Nginx on an Azure VM, and GitHub Actions deploys every change automatically.</p></section>
+    <section><h2>Key decisions</h2><ul class="decisions"><li><h3>Multi-tenant from the start</h3><p>Each client's data is isolated by design, so a second organization could be onboarded without rebuilding anything.</p></li><li><h3>Tests before scale</h3><p>Reaching 85% backend test coverage with pytest meant a change for one client couldn't quietly break another.</p></li><li><h3>A separate path for volume</h3><p>A dedicated bulk-upload pipeline processes large batches of documents in the background.</p></li></ul></section>
+    <p class="note">The code belongs to Pure Magic IT and its client, so it isn't public. I'm happy to walk through it in an interview.</p>
+  </div>
+  <aside class="aside" aria-label="Project details">
+    <dl>
+      <div><dt>My role</dt><dd>Primary engineer: backend, frontend integration, deployment</dd></div>
+      <div><dt>Company</dt><dd>Pure Magic IT, Dexter AI line</dd></div>
+      <div><dt>Status</dt><dd>In production</dd></div>
+      <div><dt>Stack</dt><dd><div class="chips"><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">React</span><span class="chip">PostgreSQL</span><span class="chip">Celery</span><span class="chip">Redis</span><span class="chip">Azure Document Intelligence</span><span class="chip">InsightFace</span><span class="chip">Docker</span><span class="chip">Nginx</span><span class="chip">GitHub Actions</span></div></dd></div>
+    </dl>
+  </aside>
+</div>
+<div class="wrap"><nav class="pager" aria-label="More case studies"><a href="../work.html"><small>Back to</small>All work</a><a class="next" href="receipt-ocr.html"><small>Next</small>Receipt OCR</a></nav></div>
+
+</main>
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h2>Let's talk</h2>
+        <p>I'm open to Machine Learning Engineer, AI Engineer, and Forward Deployed Engineer roles, remote or with relocation.</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:munazilv1@gmail.com">munazilv1@gmail.com</a>
+        <a href="https://www.linkedin.com/in/munazil-v">LinkedIn</a>
+        <a href="https://github.com/Munazil1">GitHub</a>
+      </div>
+    </div>
+    <p class="fine">Last updated October 2026</p>
+  </div>
+</footer>
+</body>
+</html>
